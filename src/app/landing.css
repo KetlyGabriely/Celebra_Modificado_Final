@@ -1,0 +1,1538 @@
+@import url(
+  "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap"
+);
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  margin: 0;
+
+  background: #151313;
+
+  color: #f4f0e8;
+
+  font-family: "Inter", sans-serif;
+}
+
+
+button {
+  font-family: inherit;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.apresentacao {
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(177, 128, 45, 0.08),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 90% 40%,
+      rgba(177, 128, 45, 0.06),
+      transparent 25%
+    ),
+
+    #171414;
+
+  overflow: hidden;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.apresentacao-header {
+
+  height: 74px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 5%;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    rgba(18, 16, 16, 0.96);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+.logo h1 {
+
+  margin: 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 30px;
+
+}
+
+
+.logo-icone {
+
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #c9ac70;
+
+  color: #201b14;
+
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+
+  display: flex;
+
+  gap: 30px;
+
+}
+
+
+.menu button {
+
+  border: none;
+
+  background: transparent;
+
+  color: #d4cec2;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: 0.3s;
+
+}
+
+
+.menu button:hover {
+
+  color: #d4b676;
+
+}
+
+
+/* =========================
+   AÇÕES
+========================= */
+
+.header-acoes {
+
+  display: flex;
+
+  gap: 10px;
+
+}
+
+
+.botao-entrar,
+.botao-criar {
+
+  padding: 11px 18px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+}
+
+
+.botao-entrar {
+
+  border: none;
+
+  background: #c9ac70;
+
+  color: #1b1712;
+
+}
+
+
+.botao-criar {
+
+  border:
+    1px solid #725e3c;
+
+  background: transparent;
+
+  color: #d4b676;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+  min-height: 620px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 100px 20px;
+
+  position: relative;
+
+}
+
+
+.hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 600px;
+
+  height: 600px;
+
+  border:
+    1px solid rgba(201, 172, 112, 0.12);
+
+  border-radius: 50%;
+
+  right: -250px;
+
+  top: 30px;
+
+}
+
+
+.hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 400px;
+
+  height: 400px;
+
+  border:
+    1px solid rgba(201, 172, 112, 0.1);
+
+  border-radius: 50%;
+
+  left: -200px;
+
+  bottom: -150px;
+
+}
+
+
+.hero-conteudo {
+
+  text-align: center;
+
+  max-width: 800px;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+.hero-label,
+.secao-label {
+
+  display: block;
+
+  color: #c9ac70;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 20px;
+
+}
+
+
+.hero h2 {
+
+  margin: 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: clamp(
+    58px,
+    8vw,
+    100px
+  );
+
+  line-height: 0.9;
+
+}
+
+
+.hero h3 {
+
+  margin: 5px 0 25px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: clamp(
+    55px,
+    7vw,
+    90px
+  );
+
+  font-style: italic;
+
+  font-weight: 500;
+
+  color: #c9ac70;
+
+}
+
+
+.hero p {
+
+  max-width: 560px;
+
+  margin: 0 auto 35px;
+
+  color: #c8c2b8;
+
+  line-height: 1.7;
+
+  font-size: 18px;
+
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.hero-botoes {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+}
+
+
+.hero-botoes button,
+.botao-secao,
+.cta-final button {
+
+  min-width: 210px;
+
+  padding: 16px 22px;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+}
+
+
+.botao-organizador {
+
+  border: none;
+
+  background: #c9ac70;
+
+  color: #211b12;
+
+}
+
+
+.botao-organizador:hover {
+
+  transform:
+    translateY(-3px);
+
+  background: #dfc38b;
+
+}
+
+
+.botao-profissional {
+
+  border:
+    1px solid #77684e;
+
+  background: transparent;
+
+  color: #f1ede5;
+
+}
+
+
+.botao-profissional:hover {
+
+  background:
+    rgba(201, 172, 112, 0.1);
+
+}
+
+
+.hero-link {
+
+  margin-top: 30px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #aaa399;
+
+  cursor: pointer;
+
+}
+
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+.estatisticas {
+
+  width: min(
+    850px,
+    90%
+  );
+
+  margin:
+    0 auto 100px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  border:
+    1px solid rgba(201, 172, 112, 0.4);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+}
+
+
+.estatisticas div {
+
+  text-align: center;
+
+  padding: 25px;
+
+  border-right:
+    1px solid rgba(255, 255, 255, 0.08);
+
+}
+
+
+.estatisticas div:last-child {
+
+  border-right: none;
+
+}
+
+
+.estatisticas strong {
+
+  display: block;
+
+  color: #c9ac70;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 36px;
+
+}
+
+
+.estatisticas span {
+
+  font-size:  14px;
+
+  color: #aaa399;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.secao {
+
+  padding:
+    100px 8%;
+
+}
+
+
+.titulo-secao {
+
+  margin: 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: clamp(
+    45px,
+    5vw,
+    65px
+  );
+
+  font-weight: 500;
+
+  text-align: center;
+
+}
+
+
+.descricao-secao {
+
+  max-width: 600px;
+
+  margin:
+    20px auto 50px;
+
+  text-align: center;
+
+  color: #aaa399;
+
+  line-height: 1.7;
+
+}
+
+
+/* =========================
+   COMO FUNCIONA
+========================= */
+
+.como-funciona {
+
+  text-align: center;
+
+  background:
+    rgba(255, 255, 255, 0.015);
+
+}
+
+
+.passos {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+
+  max-width: 1100px;
+
+  margin: 60px auto 40px;
+
+}
+
+
+.passo {
+
+  min-height: 260px;
+
+  padding: 35px;
+
+  text-align: left;
+
+  border:
+    1px solid rgba(210, 198, 170, 0.4);
+
+  border-radius: 25px;
+
+  position: relative;
+
+  transition: 0.3s;
+
+}
+
+
+.passo:hover {
+
+  transform:
+    translateY(-6px);
+
+  border-color: #c9ac70;
+
+}
+
+
+.numero-passo {
+
+  position: absolute;
+
+  top: 25px;
+
+  right: 25px;
+
+  color:
+    rgba(201, 172, 112, 0.35);
+
+}
+
+
+.icone-passo {
+
+  font-size: 30px;
+
+  color: #c9ac70;
+
+  margin-bottom: 35px;
+
+}
+
+
+.passo h3 {
+
+  font-size: 16px;
+
+}
+
+
+.passo p {
+
+  font-size: 14px;
+
+  color: #aaa399;
+
+  line-height: 1.7;
+
+}
+
+
+.botao-secao {
+
+  border: none;
+
+  background: #c9ac70;
+
+  color: #211b12;
+
+}
+
+
+/* =========================
+   RECURSOS
+========================= */
+
+.secao-cabecalho {
+
+  max-width: 1100px;
+
+  margin:
+    0 auto 50px;
+
+  display: flex;
+
+  align-items: end;
+
+  justify-content: space-between;
+
+  gap: 50px;
+
+}
+
+
+.secao-cabecalho .titulo-secao {
+
+  text-align: left;
+
+}
+
+
+.secao-cabecalho p {
+
+  max-width: 400px;
+
+  color: #aaa399;
+
+  line-height: 1.7;
+
+}
+
+
+.grid-recursos {
+
+  max-width: 1100px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+
+}
+
+
+.recurso {
+
+  padding: 30px;
+
+  min-height: 200px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+}
+
+
+.recurso span {
+
+  font-size: 25px;
+
+}
+
+
+.recurso h3 {
+
+  margin-top: 25px;
+
+}
+
+
+.recurso p {
+
+  color: #aaa399;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+}
+
+
+/* =========================
+   TIPOS DE EVENTOS
+========================= */
+
+.tipos-eventos {
+
+  background:
+    rgba(201, 172, 112, 0.03);
+
+  text-align: center;
+
+}
+
+
+.grid-eventos {
+
+  max-width: 1100px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 20px;
+
+}
+
+
+.card-evento {
+
+  padding: 35px 20px;
+
+  border:
+    1px solid rgba(201, 172, 112, 0.3);
+
+  border-radius: 18px;
+
+  transition: 0.3s;
+
+}
+
+
+.card-evento:hover {
+
+  background:
+    rgba(201, 172, 112, 0.08);
+
+  transform:
+    translateY(-5px);
+
+}
+
+
+.card-evento span {
+
+  font-size: 30px;
+
+  color: #c9ac70;
+
+}
+
+
+.card-evento h3 {
+
+  margin-bottom: 10px;
+
+}
+
+
+.card-evento p {
+
+  color: #aaa399;
+
+  font-size: 14px;
+
+}
+
+
+/* =========================
+   ORGANIZADORES / PROFISSIONAIS
+========================= */
+
+.publico {
+
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  align-items: center;
+
+  gap: 100px;
+
+}
+
+
+.publico-invertido {
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+}
+
+
+.publico-texto h2 {
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 55px;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+}
+
+
+.publico-texto p {
+
+  color: #aaa399;
+
+  line-height: 1.8;
+
+}
+
+
+.publico-texto ul {
+
+  list-style: none;
+
+  padding: 0;
+
+  margin:
+    30px 0;
+
+}
+
+
+.publico-texto li {
+
+  margin-bottom: 15px;
+
+  color: #ddd7cc;
+
+}
+
+
+.publico-card {
+
+  padding: 40px;
+
+  border:
+    1px solid rgba(201, 172, 112, 0.4);
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(201, 172, 112, 0.12),
+      rgba(255, 255, 255, 0.02)
+    );
+
+}
+
+
+.publico-card > span {
+
+  color: #c9ac70;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+}
+
+
+.publico-card h3 {
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 35px;
+
+  margin: 15px 0 30px;
+
+}
+
+
+.linha-card {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 18px 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  color: #aaa399;
+
+}
+
+
+.linha-card strong {
+
+  color: #f0ebe1;
+
+}
+
+
+.publico-card button {
+
+  width: 100%;
+
+  margin-top: 30px;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #c9ac70;
+
+  cursor: pointer;
+
+}
+
+
+/* =========================
+   MINI ESTATÍSTICAS
+========================= */
+
+.mini-estatisticas {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 20px;
+
+}
+
+
+.mini-estatisticas div {
+
+  padding: 25px;
+
+  background:
+    rgba(0, 0, 0, 0.2);
+
+  border-radius: 12px;
+
+}
+
+
+.mini-estatisticas strong {
+
+  display: block;
+
+  font-size: 35px;
+
+  color: #c9ac70;
+
+}
+
+
+.mini-estatisticas span {
+
+  font-size: 10px;
+
+  color: #aaa399;
+
+}
+
+
+/* =========================
+   DEPOIMENTOS
+========================= */
+
+.depoimentos {
+
+  text-align: center;
+
+}
+
+
+.grid-depoimentos {
+
+  max-width: 1100px;
+
+  margin:
+    60px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+
+}
+
+
+.depoimento {
+
+  padding: 35px;
+
+  text-align: left;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 18px;
+
+}
+
+
+.aspas {
+
+  color: #c9ac70;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 60px;
+
+  line-height: 0.5;
+
+}
+
+
+.depoimento p {
+
+  color: #c5beb2;
+
+  line-height: 1.8;
+
+  font-size: 14px;
+
+}
+
+
+.depoimento strong {
+
+  display: block;
+
+  margin-top: 25px;
+
+}
+
+
+.depoimento span {
+
+  color: #8f887c;
+
+  font-size: 13px;
+
+}
+
+
+/* =========================
+   FAQ
+========================= */
+
+.faq {
+
+  text-align: center;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+}
+
+
+.faq-lista {
+
+  max-width: 850px;
+
+  margin:
+    50px auto 0;
+
+  text-align: left;
+
+}
+
+
+.faq details {
+
+  padding: 20px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.1);
+
+}
+
+
+.faq summary {
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+}
+
+
+.faq details p {
+
+  color: #aaa399;
+
+  line-height: 1.7;
+
+}
+
+
+/* =========================
+   CTA FINAL
+========================= */
+
+.cta-final {
+
+  margin: 80px auto;
+
+  width: min(
+    1100px,
+    90%
+  );
+
+  padding:
+    100px 30px;
+
+  text-align: center;
+
+  border:
+    1px solid rgba(201, 172, 112, 0.4);
+
+  border-radius: 30px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 172, 112, 0.12),
+      transparent 60%
+    );
+
+}
+
+
+.cta-final > span {
+
+  color: #c9ac70;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+}
+
+
+.cta-final h2 {
+
+  max-width: 700px;
+
+  margin:
+    20px auto;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 65px;
+
+  font-weight: 500;
+
+}
+
+
+.cta-final p {
+
+  color: #aaa399;
+
+}
+
+
+.cta-final div {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-top: 30px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+  padding:
+    60px 8% 30px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  text-align: center;
+
+}
+
+
+.footer-logo {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+}
+
+
+.footer-logo h2 {
+
+  margin: 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 30px;
+
+}
+
+
+footer > p {
+
+  color: #aaa399;
+
+}
+
+
+.footer-links {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 25px;
+
+  margin: 30px 0;
+
+}
+
+
+.footer-links button {
+
+  border: none;
+
+  background: transparent;
+
+  color: #aaa399;
+
+  cursor: pointer;
+
+}
+
+
+footer small {
+
+  color: #625d55;
+
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+
+
+  .menu {
+
+    display: none;
+
+  }
+
+
+  .passos,
+  .grid-recursos,
+  .grid-depoimentos {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .grid-eventos {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+
+  .publico {
+
+    grid-template-columns:
+      1fr;
+
+    gap: 50px;
+
+  }
+
+
+  .secao-cabecalho {
+
+    flex-direction: column;
+
+    align-items: start;
+
+  }
+
+
+  .estatisticas {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .estatisticas div {
+
+    border-right: none;
+
+    border-bottom:
+      1px solid rgba(255, 255, 255, 0.08);
+
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+
+  .apresentacao-header {
+
+    padding: 0 20px;
+
+  }
+
+
+  .botao-criar {
+
+    display: none;
+
+  }
+
+
+  .hero {
+
+    min-height: 550px;
+
+  }
+
+
+  .hero-botoes {
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+  .grid-eventos {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .cta-final h2 {
+
+    font-size: 45px;
+
+  }
+
+
+  .cta-final div {
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+  .footer-links {
+
+    flex-direction: column;
+
+  }
+
+}

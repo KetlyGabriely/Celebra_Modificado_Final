@@ -1,0 +1,485 @@
+/* ============================= */
+/* PÁGINA */
+/* ============================= */
+
+.login-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(181, 137, 57, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(181, 137, 57, 0.08),
+      transparent 30%
+    ),
+    #0b0b0b;
+
+  color: #f5f1e8;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+/* DETALHES DECORATIVOS */
+
+.login-page::before {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border: 1px solid
+    rgba(202, 166, 91, 0.12);
+
+  border-radius: 50%;
+
+  top: -250px;
+  left: -180px;
+
+  pointer-events: none;
+}
+
+
+.login-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  border: 1px solid
+    rgba(202, 166, 91, 0.08);
+
+  border-radius: 50%;
+
+  bottom: -350px;
+  right: -200px;
+
+  pointer-events: none;
+}
+
+
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
+
+.login-container {
+  width: 100%;
+  max-width: 470px;
+
+  position: relative;
+  z-index: 1;
+
+  text-align: center;
+}
+
+
+/* ============================= */
+/* LOGO */
+/* ============================= */
+
+.login-logo {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+
+.login-logo h1 {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 38px;
+
+  font-weight: 500;
+
+  color: #f2eee6;
+
+  letter-spacing: 1px;
+}
+
+
+.login-logo span {
+  color: #c9a45b;
+
+  font-size: 20px;
+}
+
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+.login-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(30, 30, 30, 0.98),
+      rgba(16, 16, 16, 0.98)
+    );
+
+  border:
+    1px solid
+    rgba(202, 166, 91, 0.35);
+
+  border-radius: 18px;
+
+  padding: 42px;
+
+  box-shadow:
+    0 25px 80px
+    rgba(0, 0, 0, 0.55);
+
+  text-align: left;
+
+  backdrop-filter:
+    blur(10px);
+}
+
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.login-header {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+
+.login-header span {
+  display: block;
+
+  color: #c9a45b;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 12px;
+}
+
+
+.login-header h2 {
+  margin: 0 0 12px 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 30px;
+
+  font-weight: 500;
+
+  color: #f4efe7;
+}
+
+
+.login-header p {
+  margin: 0;
+
+  color: #9f9b95;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================= */
+/* CAMPOS */
+/* ============================= */
+
+.campo-login {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+
+.campo-login label {
+  margin-bottom: 8px;
+
+  color: #d8d2c8;
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+
+.campo-login input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 15px;
+
+  background:
+    rgba(10, 10, 10, 0.8);
+
+  border:
+    1px solid
+    #3b3936;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  outline: none;
+
+  font-size: 14px;
+
+  transition:
+    border 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+
+.campo-login input::placeholder {
+  color: #68645e;
+}
+
+
+.campo-login input:focus {
+  border-color: #c9a45b;
+
+  background: #111111;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(201, 164, 91, 0.12);
+}
+
+
+/* ============================= */
+/* BOTÃO ENTRAR */
+/* ============================= */
+
+.botao-login {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d6b46c,
+      #b9924c
+    );
+
+  color: #17120b;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    filter 0.2s;
+}
+
+
+.botao-login:hover:not(:disabled) {
+  transform:
+    translateY(-2px);
+
+  filter:
+    brightness(1.08);
+
+  box-shadow:
+    0 10px 25px
+    rgba(201, 164, 91, 0.2);
+}
+
+
+.botao-login:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================= */
+/* ERRO */
+/* ============================= */
+
+.login-erro {
+  margin-bottom: 20px;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(130, 35, 35, 0.2);
+
+  border:
+    1px solid
+    rgba(220, 80, 80, 0.4);
+
+  color: #f18b8b;
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+
+/* ============================= */
+/* CADASTRO */
+/* ============================= */
+
+.login-cadastro {
+  margin-top: 28px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  text-align: center;
+}
+
+
+.login-cadastro p {
+  margin-bottom: 12px;
+
+  color: #96918a;
+
+  font-size: 13px;
+}
+
+
+.login-cadastro button {
+  background: transparent;
+
+  border: none;
+
+  color: #c9a45b;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s;
+}
+
+
+.login-cadastro button:hover {
+  color: #f0ce83;
+}
+
+.login-voltar-apresentacao {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: 1px solid #3b3936;
+  border-radius: 7px;
+  background: transparent;
+  color: #c5beb5;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.login-voltar-apresentacao:hover {
+  border-color: #c9a45b;
+  color: #d6b56f;
+  background: rgba(201, 164, 91, 0.05);
+}
+
+
+/* ============================= */
+/* RODAPÉ */
+/* ============================= */
+
+.login-rodape {
+  margin-top: 25px;
+
+  color: #716d67;
+
+  font-size: 12px;
+
+  letter-spacing: 0.3px;
+
+  text-align: center;
+}
+
+
+/* ============================= */
+/* RESPONSIVO */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+  .login-page {
+    padding: 20px;
+  }
+
+
+  .login-card {
+    padding: 30px 22px;
+
+    border-radius: 15px;
+  }
+
+
+  .login-logo h1 {
+    font-size: 32px;
+  }
+
+
+  .login-header h2 {
+    font-size: 25px;
+  }
+
+}
