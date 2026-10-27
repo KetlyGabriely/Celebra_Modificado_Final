@@ -2,27 +2,66 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { buscarMeuPerfil } from "@/controllers/authController";
+import { buscarPerfil } from "@/controllers/perfilController";
 
 export default function HeaderProfissional() {
   const router = useRouter();
 
   const [nome, setNome] = useState("Profissional");
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    async function carregar() {
-      try {
-        const perfil = await buscarMeuPerfil();
+    let ativo = true;
 
-        if (perfil?.nome) {
-          setNome(perfil.nome);
-        }
+    async function carregarPerfil() {
+      try {
+        const perfil = await buscarPerfil();
+
+        if (!ativo) return;
+
+        setNome(perfil.nome || "Profissional");
+        setAvatarUrl(perfil.avatar_url);
       } catch (error) {
-        console.error(error);
+        console.error(
+          "Erro ao carregar perfil profissional:",
+          error
+        );
+      } finally {
+        if (ativo) setCarregando(false);
       }
     }
 
-    carregar();
+    function atualizarHeader(event: Event) {
+      const evento = event as CustomEvent<{
+        nome?: string;
+        avatar_url?: string | null;
+      }>;
+
+      if (evento.detail?.nome !== undefined) {
+        setNome(evento.detail.nome);
+      }
+
+      if (evento.detail?.avatar_url !== undefined) {
+        setAvatarUrl(evento.detail.avatar_url);
+      }
+    }
+
+    carregarPerfil();
+
+    window.addEventListener(
+      "celebra:perfil-atualizado",
+      atualizarHeader
+    );
+
+    return () => {
+      ativo = false;
+
+      window.removeEventListener(
+        "celebra:perfil-atualizado",
+        atualizarHeader
+      );
+    };
   }, []);
 
   const primeiroNome =
@@ -38,18 +77,27 @@ export default function HeaderProfissional() {
       </span>
 
       <button
+        type="button"
         className="prof-header-usuario"
-        onClick={() =>
-          router.push("/profissional/perfil")
-        }
+        onClick={() => router.push("/profissional/perfil")}
       >
         <div>
-          <strong>{primeiroNome}</strong>
+          <strong>
+            {carregando ? "Carregando..." : primeiroNome}
+          </strong>
           <span>Profissional</span>
         </div>
 
         <div className="prof-header-avatar">
-          {inicial}
+          {!carregando && avatarUrl ? (
+            <img
+              src={avatarUrl}
+              alt="Foto de perfil"
+              className="prof-header-avatar-imagem"
+            />
+          ) : (
+            carregando ? "•" : inicial
+          )}
         </div>
       </button>
     </header>

@@ -108,7 +108,7 @@ export interface InteresseRecebido {
     nome: string;
     preco_inicial: number | null;
 
-    categorias_servico?: {
+    categorias?: {
       id: string;
       nome: string;
       icone: string | null;
@@ -199,7 +199,7 @@ export async function listarInteressesRecebidos(): Promise<
         nome,
         preco_inicial,
 
-        categorias_servico (
+        categorias (
           id,
           nome,
           icone
@@ -299,7 +299,7 @@ export async function buscarInteresseRecebidoPorId(
         preco_inicial,
         profissional_id,
 
-        categorias_servico (
+        categorias (
           id,
           nome,
           icone

@@ -443,3 +443,163 @@ export async function buscarServicoPorId(
   return data as unknown as
     Servico | null;
 }
+
+
+/* =========================================================
+   ATUALIZAR SERVIÇO DO PROFISSIONAL
+========================================================= */
+
+export interface AtualizacaoServico {
+  categoria_id: string;
+  nome: string;
+  descricao?: string;
+  preco_inicial?: number | null;
+  cidade?: string;
+  estado?: string;
+  ativo: boolean;
+}
+
+export async function atualizarServico(
+  servicoId: string,
+  dados: AtualizacaoServico
+): Promise<Servico> {
+  // 1. Verificar usuário autenticado
+  const {
+    data: usuarioData,
+    error: usuarioError,
+  } = await supabase.auth.getUser();
+
+  if (usuarioError) {
+    throw new Error(usuarioError.message);
+  }
+
+  if (!usuarioData.user) {
+    throw new Error(
+      "Você precisa estar autenticado."
+    );
+  }
+
+  // 2. Identificar o profissional
+  const {
+    data: profissional,
+    error: profissionalError,
+  } = await supabase
+    .from("profissionais")
+    .select("id")
+    .eq("usuario_id", usuarioData.user.id)
+    .maybeSingle();
+
+  if (profissionalError) {
+    throw new Error(profissionalError.message);
+  }
+
+  if (!profissional) {
+    throw new Error(
+      "Perfil profissional não encontrado."
+    );
+  }
+
+  // 3. Verificar se o serviço pertence ao profissional
+  const {
+    data: servicoExistente,
+    error: buscaError,
+  } = await supabase
+    .from("servicos")
+    .select("id")
+    .eq("id", servicoId)
+    .eq("profissional_id", profissional.id)
+    .maybeSingle();
+
+  if (buscaError) {
+    throw new Error(buscaError.message);
+  }
+
+  if (!servicoExistente) {
+    throw new Error(
+      "Serviço não encontrado ou sem permissão de edição."
+    );
+  }
+
+  // 4. Validar os dados
+  if (!dados.categoria_id) {
+    throw new Error("Selecione uma categoria.");
+  }
+
+  if (!dados.nome.trim()) {
+    throw new Error("Informe o nome do serviço.");
+  }
+
+  if (
+    dados.preco_inicial != null &&
+    (
+      !Number.isFinite(dados.preco_inicial) ||
+      dados.preco_inicial < 0
+    )
+  ) {
+    throw new Error("Informe um preço válido.");
+  }
+
+  const {
+    data: categoria,
+    error: categoriaError,
+  } = await supabase
+    .from("categorias")
+    .select("id")
+    .eq("id", dados.categoria_id)
+    .eq("ativo", true)
+    .maybeSingle();
+
+  if (categoriaError) {
+    throw new Error(categoriaError.message);
+  }
+
+  if (!categoria) {
+    throw new Error(
+      "Categoria inválida ou indisponível."
+    );
+  }
+
+  // 5. Atualizar o serviço
+  const {
+    data: servicoAtualizado,
+    error: atualizacaoError,
+  } = await supabase
+    .from("servicos")
+    .update({
+      categoria_id: categoria.id,
+      nome: dados.nome.trim(),
+      descricao: dados.descricao?.trim() || null,
+      preco_inicial: dados.preco_inicial ?? null,
+      cidade: dados.cidade?.trim() || null,
+      estado:
+        dados.estado?.trim().toUpperCase() || null,
+      ativo: dados.ativo,
+    })
+    .eq("id", servicoId)
+    .eq("profissional_id", profissional.id)
+    .select(`
+      id,
+      profissional_id,
+      categoria_id,
+      nome,
+      descricao,
+      preco_inicial,
+      cidade,
+      estado,
+      ativo,
+
+      categorias (
+        id,
+        nome,
+        slug,
+        icone
+      )
+    `)
+    .single();
+
+  if (atualizacaoError) {
+    throw new Error(atualizacaoError.message);
+  }
+
+  return servicoAtualizado as unknown as Servico;
+}

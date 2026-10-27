@@ -1,3 +1,4 @@
+
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
@@ -34,9 +35,39 @@ export default function SidebarProfissional() {
       icone: "▤",
     },
     {
+      nome: "Avaliações",
+      rota: "/profissional/avaliacoes",
+      icone: "★",
+    },
+    {
+      nome: "Feed Celebra",
+      rota: "/feed",
+      icone: "✦",
+    },
+    {
+      nome: "Criar publicação",
+      rota: "/feed/criar",
+      icone: "+",
+    },
+    {
+      nome: "Publicações salvas",
+      rota: "/feed/salvos",
+      icone: "☆",
+    },
+    {
+      nome: "Meu perfil público",
+      rota: "/perfil/editar",
+      icone: "◉",
+    },
+    {
       nome: "Meu perfil",
       rota: "/profissional/perfil",
       icone: "○",
+    },
+    {
+      nome: "Configurações",
+      rota: "/profissional/configuracoes",
+      icone: "⚙",
     },
   ];
 
@@ -62,6 +93,7 @@ export default function SidebarProfissional() {
   return (
     <aside className="profissional-sidebar">
       <button
+        type="button"
         className="prof-sidebar-logo"
         onClick={() => router.push("/profissional")}
       >
@@ -78,6 +110,7 @@ export default function SidebarProfissional() {
       <nav className="prof-sidebar-nav">
         {itens.map((item) => (
           <button
+            type="button"
             key={item.rota}
             className={`prof-sidebar-item ${
               estaAtivo(item.rota) ? "ativo" : ""
@@ -106,6 +139,7 @@ export default function SidebarProfissional() {
         </div>
 
         <button
+          type="button"
           className="prof-sidebar-sair"
           onClick={sair}
         >

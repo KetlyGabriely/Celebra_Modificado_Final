@@ -256,7 +256,7 @@ export interface OrcamentoCliente {
     id: string;
     nome: string;
 
-    categorias_servico?: {
+    categorias?: {
       id: string;
       nome: string;
       icone: string | null;
@@ -336,7 +336,7 @@ export async function listarOrcamentosCliente(): Promise<
         id,
         nome,
 
-        categorias_servico (
+        categorias (
           id,
           nome,
           icone
@@ -427,7 +427,7 @@ export async function buscarOrcamentoClientePorId(
         id,
         nome,
 
-        categorias_servico (
+        categorias (
           id,
           nome,
           icone
@@ -543,7 +543,7 @@ export interface OrcamentoProfissional {
     id: string;
     nome: string;
 
-    categorias_servico?: {
+    categorias?: {
       id: string;
       nome: string;
       icone: string | null;
@@ -608,7 +608,7 @@ export async function listarOrcamentosProfissional(): Promise<
   servicos (
     id,
     nome,
-    categorias_servico (
+    categorias (
       id,
       nome,
       icone

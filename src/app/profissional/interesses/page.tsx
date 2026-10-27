@@ -322,12 +322,12 @@ function InteresseCard({
 
   const categoria =
     interesse.servicos
-      ?.categorias_servico?.nome ||
+      ?.categorias?.nome ||
     "Serviço";
 
   const icone =
     interesse.servicos
-      ?.categorias_servico?.icone ||
+      ?.categorias?.icone ||
     "✦";
 
   return (

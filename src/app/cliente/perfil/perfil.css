@@ -1,0 +1,393 @@
+
+/* ==========================================
+   CELEBRA — PERFIL DO CLIENTE
+   Tema original: Preto e Dourado
+========================================== */
+
+.perfil-cliente-page {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 0 50px;
+  color: #f3eee5;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+.perfil-cliente-header {
+  margin-bottom: 30px;
+}
+
+.perfil-cliente-header h1 {
+  margin: 9px 0 8px;
+  color: #eee8df;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.perfil-cliente-header p {
+  max-width: 580px;
+  margin: 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   CARD PRINCIPAL
+========================================== */
+
+.perfil-cliente-card {
+  overflow: hidden;
+  border: 1px solid #242424;
+  border-radius: 9px;
+  background: #101010;
+}
+
+/* ==========================================
+   IDENTIDADE DO USUÁRIO
+========================================== */
+
+.perfil-cliente-identidade {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 30px;
+  border-bottom: 1px solid #242424;
+  background: linear-gradient(
+    110deg,
+    rgba(213, 169, 66, 0.055),
+    transparent 65%
+  );
+}
+
+.perfil-cliente-avatar {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(213, 169, 66, 0.35);
+  border-radius: 50%;
+  background: rgba(213, 169, 66, 0.07);
+  color: #d6aa46;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.perfil-cliente-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.perfil-cliente-identidade > div:last-child {
+  min-width: 0;
+}
+
+.perfil-cliente-identidade h2 {
+  margin: 0 0 7px;
+  color: #e5ded4;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.perfil-cliente-identidade p {
+  margin: 0 0 12px;
+  color: #777;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.perfil-cliente-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border: 1px solid rgba(213, 169, 66, 0.25);
+  border-radius: 20px;
+  background: rgba(213, 169, 66, 0.06);
+  color: #d6aa46;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+.perfil-cliente-form {
+  padding: 30px;
+}
+
+.perfil-cliente-form h3 {
+  margin: 0 0 25px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #242424;
+  color: #ddd7ce;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+/* ==========================================
+   GRID DOS CAMPOS
+========================================== */
+
+.perfil-cliente-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 18px;
+}
+
+.perfil-cliente-grid label {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  color: #888;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.perfil-cliente-grid input {
+  width: 100%;
+  height: 45px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid #292929;
+  border-radius: 6px;
+  outline: none;
+  background: #0b0b0b;
+  color: #ddd7ce;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.perfil-cliente-grid input::placeholder {
+  color: #505050;
+}
+
+.perfil-cliente-grid input:hover:not(:disabled) {
+  border-color: #3b3426;
+}
+
+.perfil-cliente-grid input:focus {
+  border-color: rgba(213, 169, 66, 0.55);
+  background: #0d0d0d;
+  box-shadow: 0 0 0 3px rgba(213, 169, 66, 0.06);
+}
+
+.perfil-cliente-grid input:disabled {
+  border-color: #222;
+  background: #141414;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* ==========================================
+   MENSAGENS
+========================================== */
+
+.perfil-cliente-sucesso {
+  margin: 22px 0 0;
+  padding: 13px 16px;
+  border: 1px solid rgba(70, 145, 90, 0.3);
+  border-radius: 6px;
+  background: rgba(70, 145, 90, 0.06);
+  color: #83b58f;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.perfil-cliente-erro {
+  margin: 22px 0 0;
+  padding: 13px 16px;
+  border: 1px solid rgba(170, 70, 70, 0.3);
+  border-radius: 6px;
+  background: rgba(150, 50, 50, 0.06);
+  color: #c17d7d;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   BOTÃO SALVAR
+========================================== */
+
+.perfil-cliente-acoes {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  padding-top: 23px;
+  border-top: 1px solid #242424;
+}
+
+.perfil-cliente-acoes button {
+  min-width: 160px;
+  height: 44px;
+  padding: 0 22px;
+  border: 1px solid #d6aa46;
+  border-radius: 5px;
+  background: #d6aa46;
+  color: #111;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.perfil-cliente-acoes button:hover:not(:disabled) {
+  background: #e1b751;
+  transform: translateY(-1px);
+}
+
+.perfil-cliente-acoes button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.perfil-cliente-acoes button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media (max-width: 800px) {
+  .perfil-cliente-identidade {
+    padding: 25px;
+  }
+
+  .perfil-cliente-form {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 650px) {
+  .perfil-cliente-header {
+    margin-bottom: 25px;
+  }
+
+  .perfil-cliente-header h1 {
+    font-size: 35px;
+  }
+
+  .perfil-cliente-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .perfil-cliente-identidade {
+    padding: 22px;
+    gap: 15px;
+  }
+
+  .perfil-cliente-avatar {
+    width: 65px;
+    height: 65px;
+    font-size: 28px;
+  }
+
+  .perfil-cliente-identidade h2 {
+    font-size: 20px;
+  }
+
+  .perfil-cliente-form {
+    padding: 22px;
+  }
+
+  .perfil-cliente-form h3 {
+    font-size: 19px;
+  }
+
+  .perfil-cliente-acoes button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .perfil-cliente-identidade {
+    align-items: flex-start;
+  }
+
+  .perfil-cliente-avatar {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+  .perfil-cliente-identidade h2 {
+    font-size: 18px;
+  }
+}
+
+/* ==========================================
+   UPLOAD DA FOTO DE PERFIL
+========================================== */
+
+.perfil-cliente-foto-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.perfil-cliente-alterar-foto {
+  color: #d6aa46;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.perfil-cliente-alterar-foto:hover {
+  color: #e9c46a;
+  text-decoration: underline;
+}
+
+.perfil-cliente-alterar-foto.desabilitado {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.perfil-cliente-input-foto {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .perfil-cliente-foto-area {
+    gap: 8px;
+  }
+
+  .perfil-cliente-alterar-foto {
+    font-size: 9px;
+  }
+}

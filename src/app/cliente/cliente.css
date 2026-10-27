@@ -4487,3 +4487,19 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Foto de perfil no cabeçalho */
+
+.usuario-avatar {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.usuario-avatar-imagem {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}

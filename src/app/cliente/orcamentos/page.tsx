@@ -418,7 +418,7 @@ function OrcamentoCard({
         {ehEvento
           ? "◇"
           : orcamento.servicos
-              ?.categorias_servico
+              ?.categorias
               ?.icone || "✦"}
       </div>
 

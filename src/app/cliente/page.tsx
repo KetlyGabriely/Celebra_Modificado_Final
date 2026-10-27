@@ -80,15 +80,6 @@ export default function ClientePage() {
           }
         />
 
-        <DashboardCard
-          icone="✦"
-          numero="0"
-          titulo="Interesses"
-          descricao="Serviços que chamaram sua atenção"
-          onClick={() =>
-            router.push("/cliente/interesses")
-          }
-        />
 
         <DashboardCard
           icone="▤"

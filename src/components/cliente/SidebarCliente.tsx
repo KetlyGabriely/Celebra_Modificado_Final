@@ -11,10 +11,18 @@ export default function SidebarCliente() {
     { nome: "Início", rota: "/cliente", icone: "⌂" },
     { nome: "Explorar serviços", rota: "/cliente/servicos", icone: "◇" },
     { nome: "Meus eventos", rota: "/cliente/eventos", icone: "♡" },
-    { nome: "Interesses", rota: "/cliente/interesses", icone: "✦" },
     { nome: "Orçamentos", rota: "/cliente/orcamentos", icone: "▤" },
     { nome: "Favoritos", rota: "/cliente/favoritos", icone: "☆" },
+    { nome: "Feed Celebra", rota: "/feed", icone: "✦" },
+    { nome: "Criar publicação", rota: "/feed/criar", icone: "+" },
+    { nome: "Publicações salvas", rota: "/feed/salvos", icone: "☆" },
+    { nome: "Meu perfil público", rota: "/perfil/editar", icone: "◉" },
     { nome: "Meu perfil", rota: "/cliente/perfil", icone: "○" },
+    {
+      nome: "Configurações",
+      rota: "/cliente/configuracoes",
+      icone: "⚙",
+    },
   ];
 
   function estaAtivo(rota: string) {
@@ -53,9 +61,8 @@ export default function SidebarCliente() {
         {itens.map((item) => (
           <button
             key={item.rota}
-            className={`sidebar-item ${
-              estaAtivo(item.rota) ? "ativo" : ""
-            }`}
+            className={`sidebar-item ${estaAtivo(item.rota) ? "ativo" : ""
+              }`}
             onClick={() => router.push(item.rota)}
           >
             <span className="sidebar-icone">

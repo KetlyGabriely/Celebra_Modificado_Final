@@ -3744,3 +3744,19 @@ button {
   font-size: 10px;
   font-weight: 500;
 }
+
+
+/* Foto do profissional no cabeçalho */
+
+.prof-header-avatar {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.prof-header-avatar-imagem {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}

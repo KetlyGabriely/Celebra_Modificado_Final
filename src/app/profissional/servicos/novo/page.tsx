@@ -1,6 +1,8 @@
+
 "use client";
 
 import {
+  ChangeEvent,
   FormEvent,
   useEffect,
   useState,
@@ -13,10 +15,28 @@ import {
   listarCategorias,
 } from "@/controllers/servicoController";
 
+import {
+  enviarImagemServico,
+} from "@/controllers/servicoImagemController";
+
 import type {
   CategoriaServico,
 } from "@/models/Servico";
 
+interface FotoSelecionada {
+  id: string;
+  arquivo: File;
+  preview: string;
+}
+
+const LIMITE_FOTOS = 10;
+const TAMANHO_MAXIMO = 5 * 1024 * 1024;
+
+const TIPOS_PERMITIDOS = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+];
 
 export default function NovoServicoPage() {
   const router = useRouter();
@@ -32,12 +52,19 @@ export default function NovoServicoPage() {
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
 
+  const [fotos, setFotos] = useState<
+    FotoSelecionada[]
+  >([]);
+
   const [carregandoCategorias, setCarregandoCategorias] =
     useState(true);
 
   const [salvando, setSalvando] = useState(false);
-
+  const [progresso, setProgresso] = useState("");
   const [erro, setErro] = useState("");
+
+  const [servicoCriadoId, setServicoCriadoId] =
+    useState<string | null>(null);
 
   useEffect(() => {
     async function carregarCategorias() {
@@ -45,7 +72,6 @@ export default function NovoServicoPage() {
         setCarregandoCategorias(true);
 
         const data = await listarCategorias();
-
         setCategorias(data);
       } catch (error) {
         console.error(error);
@@ -63,6 +89,75 @@ export default function NovoServicoPage() {
     carregarCategorias();
   }, []);
 
+  // Libera as URLs temporárias ao desmontar.
+  useEffect(() => {
+    return () => {
+      fotos.forEach((foto) => {
+        URL.revokeObjectURL(foto.preview);
+      });
+    };
+  }, [fotos]);
+
+  function selecionarFotos(
+    event: ChangeEvent<HTMLInputElement>
+  ) {
+    const arquivos = Array.from(
+      event.target.files ?? []
+    );
+
+    event.target.value = "";
+
+    if (arquivos.length === 0) return;
+
+    if (
+      fotos.length + arquivos.length >
+      LIMITE_FOTOS
+    ) {
+      setErro(
+        `Você pode selecionar no máximo ${LIMITE_FOTOS} fotos.`
+      );
+      return;
+    }
+
+    for (const arquivo of arquivos) {
+      if (!TIPOS_PERMITIDOS.includes(arquivo.type)) {
+        setErro(
+          "Utilize apenas imagens JPG, PNG ou WebP."
+        );
+        return;
+      }
+
+      if (
+        arquivo.size === 0 ||
+        arquivo.size > TAMANHO_MAXIMO
+      ) {
+        setErro(
+          "Cada imagem deve ter mais de 0 bytes e no máximo 5 MB."
+        );
+        return;
+      }
+    }
+
+    const novasFotos = arquivos.map((arquivo) => ({
+      id: crypto.randomUUID(),
+      arquivo,
+      preview: URL.createObjectURL(arquivo),
+    }));
+
+    setFotos((anteriores) => [
+      ...anteriores,
+      ...novasFotos,
+    ]);
+
+    setErro("");
+  }
+
+  function removerFoto(id: string) {
+    setFotos((anteriores) =>
+      anteriores.filter((foto) => foto.id !== id)
+    );
+  }
+
   async function cadastrar(
     event: FormEvent<HTMLFormElement>
   ) {
@@ -78,8 +173,16 @@ export default function NovoServicoPage() {
       return;
     }
 
-    if (preco && Number(preco) < 0) {
-      setErro("O preço não pode ser negativo.");
+    const precoNumerico = preco
+      ? Number(preco.replace(",", "."))
+      : null;
+
+    if (
+      precoNumerico !== null &&
+      (!Number.isFinite(precoNumerico) ||
+        precoNumerico < 0)
+    ) {
+      setErro("Informe um preço válido.");
       return;
     }
 
@@ -87,19 +190,45 @@ export default function NovoServicoPage() {
       setSalvando(true);
       setErro("");
 
-      await cadastrarServico({
-        categoria_id: categoriaId,
-        nome,
-        descricao,
+      let id = servicoCriadoId;
 
-        preco_inicial: preco
-          ? Number(preco.replace(",", "."))
-          : null,
+      if (!id) {
+        setProgresso("Cadastrando serviço...");
 
-        cidade,
-        estado,
-      });
+        const servico = await cadastrarServico({
+          categoria_id: categoriaId,
+          nome,
+          descricao,
+          preco_inicial: precoNumerico,
+          cidade,
+          estado,
+        });
 
+        id = servico.id;
+        setServicoCriadoId(id);
+      }
+
+      // Se houver falha, o cadastro já criado é
+      // preservado e o usuário pode tentar novamente.
+      for (let i = 0; i < fotos.length; i++) {
+        setProgresso(
+          `Enviando foto ${i + 1} de ${fotos.length}...`
+        );
+
+        await enviarImagemServico(
+          id,
+          fotos[i].arquivo
+        );
+
+        // Retira da fila apenas a foto enviada.
+        setFotos((anteriores) =>
+          anteriores.filter(
+            (foto) => foto.id !== fotos[i].id
+          )
+        );
+      }
+
+      setProgresso("Serviço publicado!");
       router.push("/profissional/servicos");
       router.refresh();
     } catch (error) {
@@ -108,8 +237,10 @@ export default function NovoServicoPage() {
       setErro(
         error instanceof Error
           ? error.message
-          : "Não foi possível cadastrar o serviço."
+          : "Não foi possível concluir a publicação."
       );
+
+      setProgresso("");
     } finally {
       setSalvando(false);
     }
@@ -151,7 +282,6 @@ export default function NovoServicoPage() {
 
             <div>
               <h2>Informações principais</h2>
-
               <p>
                 Conte aos clientes o que você oferece.
               </p>
@@ -170,7 +300,11 @@ export default function NovoServicoPage() {
                 onChange={(event) =>
                   setCategoriaId(event.target.value)
                 }
-                disabled={carregandoCategorias}
+                disabled={
+                  carregandoCategorias ||
+                  salvando ||
+                  !!servicoCriadoId
+                }
                 required
               >
                 <option value="">
@@ -204,6 +338,7 @@ export default function NovoServicoPage() {
                 }
                 placeholder="Ex.: Buffet completo para casamentos"
                 maxLength={120}
+                disabled={salvando || !!servicoCriadoId}
                 required
               />
 
@@ -226,6 +361,7 @@ export default function NovoServicoPage() {
                 placeholder="Descreva o que está incluso, diferenciais e informações importantes..."
                 rows={7}
                 maxLength={1500}
+                disabled={salvando || !!servicoCriadoId}
               />
 
               <span className="novo-contador">
@@ -241,7 +377,6 @@ export default function NovoServicoPage() {
 
             <div>
               <h2>Preço</h2>
-
               <p>
                 Informe um valor inicial ou deixe em branco
                 para trabalhar sob consulta.
@@ -268,11 +403,13 @@ export default function NovoServicoPage() {
                     setPreco(event.target.value)
                   }
                   placeholder="0,00"
+                  disabled={salvando || !!servicoCriadoId}
                 />
               </div>
 
               <span className="novo-campo-ajuda">
-                Opcional. Sem valor, aparecerá "Sob consulta".
+                Opcional. Sem valor, aparecerá
+                "Sob consulta".
               </span>
             </div>
           </div>
@@ -284,7 +421,6 @@ export default function NovoServicoPage() {
 
             <div>
               <h2>Localização</h2>
-
               <p>
                 Informe onde o serviço está disponível.
               </p>
@@ -306,6 +442,7 @@ export default function NovoServicoPage() {
                 }
                 placeholder="Ex.: Itapetininga"
                 maxLength={100}
+                disabled={salvando || !!servicoCriadoId}
               />
             </div>
 
@@ -327,17 +464,148 @@ export default function NovoServicoPage() {
                 }
                 placeholder="SP"
                 maxLength={2}
+                disabled={salvando || !!servicoCriadoId}
               />
             </div>
+          </div>
+        </section>
+
+        <section className="novo-servico-bloco">
+          <div className="novo-bloco-header">
+            <span>04</span>
+
+            <div>
+              <h2>Fotos do serviço</h2>
+              <p>
+                Mostre seus trabalhos e ajude os clientes
+                a conhecerem seu serviço.
+              </p>
+            </div>
+          </div>
+
+          <div className="novo-form-grid">
+            <div className="novo-form-campo campo-completo">
+              <label htmlFor="fotos-servico">
+                Adicionar fotos
+              </label>
+
+              <input
+                id="fotos-servico"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                disabled={
+                  salvando ||
+                  fotos.length >= LIMITE_FOTOS
+                }
+                onChange={selecionarFotos}
+              />
+
+              <span className="novo-campo-ajuda">
+                Até 10 fotos, com no máximo 5 MB cada.
+                A primeira foto será a capa.
+              </span>
+
+              <span className="novo-contador">
+                {fotos.length} foto(s) selecionada(s)
+              </span>
+            </div>
+
+            {fotos.length > 0 && (
+              <div
+                className="campo-completo"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns:
+                    "repeat(auto-fill, minmax(140px, 1fr))",
+                  gap: 14,
+                }}
+              >
+                {fotos.map((foto, index) => (
+                  <div
+                    key={foto.id}
+                    style={{
+                      border: "1px solid #242424",
+                      borderRadius: 12,
+                      overflow: "hidden",
+                      background: "#101010",
+                    }}
+                  >
+                    <img
+                      src={foto.preview}
+                      alt={`Prévia ${index + 1}`}
+                      style={{
+                        width: "100%",
+                        height: 125,
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+
+                    <div
+                      style={{
+                        padding: 10,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 8,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: 12,
+                          color:
+                            index === 0
+                              ? "#d6aa46"
+                              : "#aaa",
+                        }}
+                      >
+                        {index === 0
+                          ? "★ Foto de capa"
+                          : `Foto ${index + 1}`}
+                      </span>
+
+                      <button
+                        type="button"
+                        disabled={salvando}
+                        onClick={() =>
+                          removerFoto(foto.id)
+                        }
+                        style={{
+                          background: "transparent",
+                          border: "1px solid #444",
+                          borderRadius: 6,
+                          color: "#fff",
+                          padding: "7px 10px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Remover
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
         {erro && (
           <div className="novo-servico-erro">
             <span>!</span>
-
             <p>{erro}</p>
           </div>
+        )}
+
+        {progresso && (
+          <p
+            role="status"
+            style={{
+              color: "#d6aa46",
+              marginTop: 12,
+            }}
+          >
+            {progresso}
+          </p>
         )}
 
         <div className="novo-servico-acoes">
@@ -362,7 +630,9 @@ export default function NovoServicoPage() {
           >
             {salvando
               ? "Publicando..."
-              : "Publicar serviço"}
+              : servicoCriadoId
+                ? "Continuar envio das fotos"
+                : "Publicar serviço"}
           </button>
         </div>
       </form>
