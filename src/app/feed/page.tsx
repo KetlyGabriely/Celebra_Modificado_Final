@@ -366,7 +366,7 @@ export default function FeedPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#090909] px-4 py-8 text-white sm:px-6">
+    <main className="feed-home-page min-h-screen bg-[#090909] px-4 py-8 text-white sm:px-6">
       <div className="mx-auto max-w-3xl">
         <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -374,9 +374,17 @@ export default function FeedPage() {
             <h1 className="text-3xl font-bold sm:text-4xl">Feed Celebra</h1>
             <p className="mt-2 text-sm text-zinc-400">Inspirações, eventos e profissionais em destaque.</p>
           </div>
-          <Link href="/feed/criar" className="rounded-xl bg-[#d6aa46] px-5 py-3 text-sm font-bold text-[#090909] transition hover:bg-[#e8bf62]">
-            + Criar publicação
-          </Link>
+          <nav aria-label="Ações do Feed Celebra" className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3">
+            <Link href="/feed/criar" aria-label="Criar postagem" title="Criar postagem" className="rounded-xl bg-[#d6aa46] px-5 py-3 text-center text-sm font-bold text-[#090909] transition hover:bg-[#e8bf62]">
+              + Criar publicação
+            </Link>
+            <Link href="/feed/salvos" aria-label="Publicacoes salvas" title="Publicacoes salvas" className="rounded-xl border border-zinc-700 px-4 py-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-[#d6aa46] hover:text-[#d6aa46]">
+              ☆ Publicações salvas
+            </Link>
+            <Link href="/perfil/editar" aria-label="Meu perfil publico" title="Meu perfil publico" className="rounded-xl border border-zinc-700 px-4 py-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-[#d6aa46] hover:text-[#d6aa46]">
+              ◉ Meu perfil público
+            </Link>
+          </nav>
         </header>
 
         {erro && (

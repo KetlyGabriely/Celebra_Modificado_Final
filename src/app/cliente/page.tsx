@@ -3,11 +3,25 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { buscarMeuPerfil } from "@/controllers/authController";
+import { listarEventosCliente } from "@/controllers/eventoController";
+import { listarOrcamentosCliente } from "@/controllers/orcamentoController";
+import { listarFavoritos } from "@/controllers/favoritoController";
+
+interface ResumoCliente {
+  eventos: number;
+  orcamentos: number;
+  favoritos: number;
+}
 
 export default function ClientePage() {
   const router = useRouter();
 
   const [nome, setNome] = useState("Cliente");
+  const [resumo, setResumo] = useState<ResumoCliente>({
+    eventos: 0,
+    orcamentos: 0,
+    favoritos: 0,
+  });
 
   useEffect(() => {
     async function carregar() {
@@ -17,6 +31,18 @@ export default function ClientePage() {
         if (perfil?.nome) {
           setNome(perfil.nome.split(" ")[0]);
         }
+
+        const [eventos, orcamentos, favoritos] = await Promise.all([
+          listarEventosCliente(),
+          listarOrcamentosCliente(),
+          listarFavoritos(),
+        ]);
+
+        setResumo({
+          eventos: eventos.length,
+          orcamentos: orcamentos.length,
+          favoritos: favoritos.length,
+        });
       } catch (error) {
         console.error(error);
       }
@@ -72,7 +98,7 @@ export default function ClientePage() {
       <section className="dashboard-resumo">
         <DashboardCard
           icone="♡"
-          numero="0"
+          numero={String(resumo.eventos)}
           titulo="Meus eventos"
           descricao="Eventos que você está organizando"
           onClick={() =>
@@ -83,7 +109,7 @@ export default function ClientePage() {
 
         <DashboardCard
           icone="▤"
-          numero="0"
+          numero={String(resumo.orcamentos)}
           titulo="Orçamentos"
           descricao="Propostas recebidas de profissionais"
           onClick={() =>
@@ -93,7 +119,7 @@ export default function ClientePage() {
 
         <DashboardCard
           icone="☆"
-          numero="0"
+          numero={String(resumo.favoritos)}
           titulo="Favoritos"
           descricao="Serviços salvos para consultar depois"
           onClick={() =>

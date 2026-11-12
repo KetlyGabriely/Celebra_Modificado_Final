@@ -291,6 +291,73 @@ button {
   padding: 47px 4% 70px;
 }
 
+.feed-home-page > div > header > nav[aria-label] {
+  display: none;
+}
+
+.feed-actions-rail {
+  position: fixed;
+  top: 112px;
+  right: 28px;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feed-actions-rail-link {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid rgba(214, 170, 70, 0.75);
+  border-radius: 50%;
+  background: #101315;
+  color: #efb52f;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.feed-actions-rail-link:hover {
+  transform: scale(1.06);
+  background: #191a18;
+  box-shadow: 0 0 22px rgba(243, 189, 61, 0.22);
+}
+
+.feed-actions-rail-link svg {
+  width: 25px;
+  height: 25px;
+}
+
+.feed-actions-rail-create {
+  border-color: #f3bd3d;
+  background: linear-gradient(135deg, #ffd34f, #e9a91e);
+  color: #151515;
+  box-shadow: 0 0 24px rgba(243, 189, 61, 0.32);
+}
+
+.feed-actions-rail-create:hover {
+  background: linear-gradient(135deg, #ffe076, #f0b72d);
+}
+
+@media (max-width: 800px) {
+  .feed-actions-rail {
+    top: 88px;
+    right: 14px;
+    gap: 10px;
+  }
+
+  .feed-actions-rail-link {
+    width: 48px;
+    height: 48px;
+  }
+
+  .feed-actions-rail-link svg {
+    width: 21px;
+    height: 21px;
+  }
+}
+
 .prof-home,
 .prof-servicos-page {
   width: min(1250px, 100%);

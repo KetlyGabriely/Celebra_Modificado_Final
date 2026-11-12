@@ -58,7 +58,9 @@ export default function SidebarCliente() {
       <span className="sidebar-label">MENU</span>
 
       <nav className="sidebar-nav">
-        {itens.map((item) => (
+        {itens
+          .filter((item) => !["/feed/criar", "/feed/salvos", "/perfil/editar"].includes(item.rota))
+          .map((item) => (
           <button
             key={item.rota}
             className={`sidebar-item ${estaAtivo(item.rota) ? "ativo" : ""

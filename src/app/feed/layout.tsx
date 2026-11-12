@@ -1,7 +1,6 @@
-﻿import SidebarProfissional from "@/components/profissional/SidebarProfissional";
-import HeaderProfissional from "@/components/profissional/HeaderProfissional";
-
+﻿import CommunityLayout from "@/components/feed/CommunityLayout";
 import "../profissional/profissional.css";
+import "../cliente/cliente.css";
 
 export default function FeedLayout({
   children,
@@ -9,12 +8,6 @@ export default function FeedLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="profissional-dashboard">
-      <SidebarProfissional />
-      <div className="profissional-area">
-        <HeaderProfissional />
-        <main className="profissional-main">{children}</main>
-      </div>
-    </div>
+    <CommunityLayout>{children}</CommunityLayout>
   );
 }

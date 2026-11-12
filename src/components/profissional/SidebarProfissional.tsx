@@ -108,7 +108,9 @@ export default function SidebarProfissional() {
       </span>
 
       <nav className="prof-sidebar-nav">
-        {itens.map((item) => (
+        {itens
+          .filter((item) => !["/feed/criar", "/feed/salvos", "/perfil/editar"].includes(item.rota))
+          .map((item) => (
           <button
             type="button"
             key={item.rota}

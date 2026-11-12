@@ -1,9 +1,53 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { listarMeusServicos } from "@/controllers/servicoController";
+import { listarInteressesRecebidos } from "@/controllers/interesseController";
+import { listarOrcamentosProfissional } from "@/controllers/orcamentoController";
+import { listarEventosPublicos } from "@/controllers/eventoController";
+
+interface ResumoProfissional {
+  servicos: number;
+  interesses: number;
+  oportunidades: number;
+  orcamentos: number;
+}
 
 export default function ProfissionalPage() {
   const router = useRouter();
+  const [resumo, setResumo] = useState<ResumoProfissional>({
+    servicos: 0,
+    interesses: 0,
+    oportunidades: 0,
+    orcamentos: 0,
+  });
+
+  useEffect(() => {
+    async function carregarResumo() {
+      try {
+      const resultados = await Promise.allSettled([
+        listarMeusServicos(),
+        listarInteressesRecebidos(),
+        listarEventosPublicos(),
+        listarOrcamentosProfissional(),
+      ]);
+
+        const [servicos, interesses, oportunidades, orcamentos] = resultados;
+
+        if (servicos.status === "fulfilled") setResumo((atual) => ({ ...atual, servicos: servicos.value.filter((servico) => servico.ativo).length }));
+        if (interesses.status === "fulfilled") setResumo((atual) => ({ ...atual, interesses: interesses.value.length }));
+        if (oportunidades.status === "fulfilled") setResumo((atual) => ({ ...atual, oportunidades: oportunidades.value.length }));
+        if (orcamentos.status === "fulfilled") setResumo((atual) => ({ ...atual, orcamentos: orcamentos.value.length }));
+      } catch (error) {
+        console.error("Não foi possível carregar o resumo profissional:", error);
+      }
+    }
+
+    void carregarResumo();
+    window.addEventListener("focus", carregarResumo);
+    return () => window.removeEventListener("focus", carregarResumo);
+  }, []);
 
   return (
     <div className="prof-home">
@@ -38,7 +82,7 @@ export default function ProfissionalPage() {
 
       <section className="prof-resumo">
         <ResumoCard
-          numero="0"
+          numero={String(resumo.servicos)}
           titulo="Serviços ativos"
           descricao="Serviços publicados no marketplace"
           icone="◇"
@@ -48,7 +92,7 @@ export default function ProfissionalPage() {
         />
 
         <ResumoCard
-          numero="0"
+          numero={String(resumo.interesses)}
           titulo="Interesses"
           descricao="Clientes interessados em seus serviços"
           icone="♡"
@@ -60,7 +104,7 @@ export default function ProfissionalPage() {
         />
 
         <ResumoCard
-          numero="0"
+          numero={String(resumo.oportunidades)}
           titulo="Oportunidades"
           descricao="Eventos procurando profissionais"
           icone="✦"
@@ -72,7 +116,7 @@ export default function ProfissionalPage() {
         />
 
         <ResumoCard
-          numero="0"
+          numero={String(resumo.orcamentos)}
           titulo="Orçamentos"
           descricao="Propostas enviadas aos clientes"
           icone="▤"
