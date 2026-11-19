@@ -1,55 +1,82 @@
+
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { buscarMeuPerfil } from "@/controllers/authController";
+
 import { listarEventosCliente } from "@/controllers/eventoController";
 import { listarOrcamentosCliente } from "@/controllers/orcamentoController";
 import { listarFavoritos } from "@/controllers/favoritoController";
-
-interface ResumoCliente {
-  eventos: number;
-  orcamentos: number;
-  favoritos: number;
-}
 
 export default function ClientePage() {
   const router = useRouter();
 
   const [nome, setNome] = useState("Cliente");
-  const [resumo, setResumo] = useState<ResumoCliente>({
-    eventos: 0,
-    orcamentos: 0,
-    favoritos: 0,
-  });
+
+  const [totalEventos, setTotalEventos] = useState(0);
+  const [totalOrcamentos, setTotalOrcamentos] = useState(0);
+  const [totalFavoritos, setTotalFavoritos] = useState(0);
+
+  const [carregando, setCarregando] = useState(true);
+  const [erroResumo, setErroResumo] = useState(false);
+
+  // CARREGAR NOME DO CLIENTE
 
   useEffect(() => {
-    async function carregar() {
+    async function carregarPerfil() {
       try {
         const perfil = await buscarMeuPerfil();
 
         if (perfil?.nome) {
           setNome(perfil.nome.split(" ")[0]);
         }
-
-        const [eventos, orcamentos, favoritos] = await Promise.all([
-          listarEventosCliente(),
-          listarOrcamentosCliente(),
-          listarFavoritos(),
-        ]);
-
-        setResumo({
-          eventos: eventos.length,
-          orcamentos: orcamentos.length,
-          favoritos: favoritos.length,
-        });
       } catch (error) {
         console.error(error);
       }
     }
 
-    carregar();
+    carregarPerfil();
   }, []);
+
+  // CARREGAR CONTADORES
+
+  const carregarResumo = useCallback(async () => {
+    try {
+      setCarregando(true);
+      setErroResumo(false);
+
+      const [
+        eventos,
+        orcamentos,
+        favoritos,
+      ] = await Promise.all([
+        listarEventosCliente(),
+        listarOrcamentosCliente(),
+        listarFavoritos(),
+      ]);
+
+      setTotalEventos(eventos.length);
+      setTotalOrcamentos(orcamentos.length);
+      setTotalFavoritos(favoritos.length);
+    } catch (error) {
+      console.error("Erro ao carregar resumo do cliente:", error);
+      setErroResumo(true);
+    } finally {
+      setCarregando(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    carregarResumo();
+  }, [carregarResumo]);
+
+  const numeroResumo = (numero: number) => {
+    if (carregando) return "...";
+    if (erroResumo) return "—";
+    return numero;
+  };
 
   return (
     <div className="cliente-home">
@@ -98,7 +125,7 @@ export default function ClientePage() {
       <section className="dashboard-resumo">
         <DashboardCard
           icone="♡"
-          numero={String(resumo.eventos)}
+          numero={numeroResumo(totalEventos)}
           titulo="Meus eventos"
           descricao="Eventos que você está organizando"
           onClick={() =>
@@ -106,10 +133,9 @@ export default function ClientePage() {
           }
         />
 
-
         <DashboardCard
           icone="▤"
-          numero={String(resumo.orcamentos)}
+          numero={numeroResumo(totalOrcamentos)}
           titulo="Orçamentos"
           descricao="Propostas recebidas de profissionais"
           onClick={() =>
@@ -119,7 +145,7 @@ export default function ClientePage() {
 
         <DashboardCard
           icone="☆"
-          numero={String(resumo.favoritos)}
+          numero={numeroResumo(totalFavoritos)}
           titulo="Favoritos"
           descricao="Serviços salvos para consultar depois"
           onClick={() =>
@@ -127,6 +153,13 @@ export default function ClientePage() {
           }
         />
       </section>
+
+      {erroResumo && (
+        <p style={{ color: "#b7791f", marginTop: "10px" }}>
+          Não foi possível atualizar os contadores. Tente
+          recarregar a página.
+        </p>
+      )}
 
       {/* EXPLORAR */}
 
@@ -265,7 +298,7 @@ function DashboardCard({
   onClick,
 }: {
   icone: string;
-  numero: string;
+  numero: number | string;
   titulo: string;
   descricao: string;
   onClick: () => void;

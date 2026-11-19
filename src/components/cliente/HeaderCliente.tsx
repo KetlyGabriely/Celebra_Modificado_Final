@@ -1,16 +1,18 @@
-
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { buscarPerfil } from "@/controllers/perfilController";
+import { logoutUsuario } from "@/controllers/authController";
 
 export default function HeaderCliente() {
   const router = useRouter();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const [nome, setNome] = useState("Cliente");
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [carregando, setCarregando] = useState(true);
+  const [menuAberto, setMenuAberto] = useState(false);
 
   useEffect(() => {
     let ativo = true;
@@ -54,7 +56,6 @@ export default function HeaderCliente() {
 
     return () => {
       ativo = false;
-
       window.removeEventListener(
         "celebra:perfil-atualizado",
         atualizarHeader
@@ -62,11 +63,48 @@ export default function HeaderCliente() {
     };
   }, []);
 
-  const primeiroNome =
-    nome.trim().split(" ")[0] || "Cliente";
+  useEffect(() => {
+    function fecharAoClicarFora(event: MouseEvent) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setMenuAberto(false);
+      }
+    }
 
-  const inicial =
-    primeiroNome.charAt(0).toUpperCase() || "C";
+    function fecharComEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuAberto(false);
+      }
+    }
+
+    document.addEventListener("mousedown", fecharAoClicarFora);
+    document.addEventListener("keydown", fecharComEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", fecharAoClicarFora);
+      document.removeEventListener("keydown", fecharComEscape);
+    };
+  }, []);
+
+  const primeiroNome = nome.trim().split(" ")[0] || "Cliente";
+  const inicial = primeiroNome.charAt(0).toUpperCase() || "C";
+
+  function abrirPerfil() {
+    setMenuAberto(false);
+    router.push("/cliente/perfil");
+  }
+
+  async function sairDaConta() {
+    try {
+      await logoutUsuario();
+      router.replace("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("Erro ao sair da conta:", error);
+    }
+  }
 
   return (
     <header className="cliente-dashboard-header">
@@ -76,30 +114,54 @@ export default function HeaderCliente() {
         </span>
       </div>
 
-      <button
-        type="button"
-        className="dashboard-usuario"
-        onClick={() => router.push("/cliente/perfil")}
-      >
-        <div className="usuario-texto">
-          <strong>
-            {carregando ? "Carregando..." : primeiroNome}
-          </strong>
-          <span>Cliente</span>
-        </div>
+      <div className="header-perfil-container" ref={menuRef}>
+        <button
+          type="button"
+          className="dashboard-usuario"
+          onClick={() => setMenuAberto((aberto) => !aberto)}
+          aria-expanded={menuAberto}
+          aria-haspopup="true"
+        >
+          <div className="usuario-texto">
+            <strong>
+              {carregando ? "Carregando..." : primeiroNome}
+            </strong>
+            <span>Cliente</span>
+          </div>
 
-        <div className="usuario-avatar">
-          {!carregando && avatarUrl ? (
-            <img
-              src={avatarUrl}
-              alt="Foto de perfil"
-              className="usuario-avatar-imagem"
-            />
-          ) : (
-            carregando ? "•" : inicial
-          )}
-        </div>
-      </button>
+          <div className="usuario-avatar">
+            {!carregando && avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt="Foto de perfil"
+                className="usuario-avatar-imagem"
+              />
+            ) : (
+              carregando ? "•" : inicial
+            )}
+          </div>
+        </button>
+
+        {menuAberto && (
+          <div className="header-perfil-dropdown">
+            <button type="button" onClick={abrirPerfil}>
+              <span>♙</span>
+              Meu perfil
+            </button>
+
+            <div className="header-menu-divider" />
+
+            <button
+              type="button"
+              className="header-menu-sair"
+              onClick={sairDaConta}
+            >
+              <span>↪</span>
+              Sair da conta
+            </button>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

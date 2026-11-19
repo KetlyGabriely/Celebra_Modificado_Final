@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { logoutUsuario } from "@/controllers/authController";
 
 export default function SidebarCliente() {
   const router = useRouter();
@@ -13,10 +12,7 @@ export default function SidebarCliente() {
     { nome: "Meus eventos", rota: "/cliente/eventos", icone: "♡" },
     { nome: "Orçamentos", rota: "/cliente/orcamentos", icone: "▤" },
     { nome: "Favoritos", rota: "/cliente/favoritos", icone: "☆" },
-    { nome: "Feed Celebra", rota: "/feed", icone: "✦" },
-    { nome: "Criar publicação", rota: "/feed/criar", icone: "+" },
-    { nome: "Publicações salvas", rota: "/feed/salvos", icone: "☆" },
-    { nome: "Meu perfil público", rota: "/perfil/editar", icone: "◉" },
+    { nome: "Feed Celebra", rota: "/feed", icone: "◉" },
     { nome: "Meu perfil", rota: "/cliente/perfil", icone: "○" },
     {
       nome: "Configurações",
@@ -31,16 +27,6 @@ export default function SidebarCliente() {
     }
 
     return pathname.startsWith(rota);
-  }
-
-  async function sair() {
-    try {
-      await logoutUsuario();
-      router.push("/login");
-      router.refresh();
-    } catch (error) {
-      console.error("Erro ao sair:", error);
-    }
   }
 
   return (
@@ -58,13 +44,12 @@ export default function SidebarCliente() {
       <span className="sidebar-label">MENU</span>
 
       <nav className="sidebar-nav">
-        {itens
-          .filter((item) => !["/feed/criar", "/feed/salvos", "/perfil/editar"].includes(item.rota))
-          .map((item) => (
+        {itens.map((item) => (
           <button
             key={item.rota}
-            className={`sidebar-item ${estaAtivo(item.rota) ? "ativo" : ""
-              }`}
+            className={`sidebar-item ${
+              estaAtivo(item.rota) ? "ativo" : ""
+            }`}
             onClick={() => router.push(item.rota)}
           >
             <span className="sidebar-icone">
@@ -85,14 +70,6 @@ export default function SidebarCliente() {
             <p>Estamos aqui para você.</p>
           </div>
         </div>
-
-        <button
-          className="sidebar-sair"
-          onClick={sair}
-        >
-          <span>↪</span>
-          Sair da conta
-        </button>
       </div>
     </aside>
   );

@@ -31,6 +31,8 @@ button {
 
   border-right: 1px solid #222;
 
+  overflow: hidden;
+
   z-index: 50;
 }
 
@@ -80,9 +82,38 @@ button {
 }
 
 .sidebar-nav {
+  flex: 1;
+  min-height: 0;
+
   display: flex;
   flex-direction: column;
   gap: 5px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 6px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
+}
+
+/* Barra de rolagem - Chrome, Edge e Safari */
+.sidebar-nav::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 999px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: #d6aa46;
 }
 
 .sidebar-item {
@@ -144,7 +175,14 @@ button {
 }
 
 .sidebar-final {
-  margin-top: auto;
+  flex-shrink: 0;
+
+  padding-top: 14px;
+  margin-top: 10px;
+
+  border-top: 1px solid #1f1f1f;
+
+  background: #0d0d0d;
 }
 
 .sidebar-ajuda {
@@ -4503,3 +4541,53 @@ button {
   border-radius: 50%;
   object-fit: cover;
 }
+
+
+/* SIDEBAR COMPACTA - CLIENTE */
+
+.cliente-sidebar {
+  padding: 18px 16px 14px;
+}
+
+.sidebar-divisor {
+  margin: 17px 9px;
+}
+
+.sidebar-label {
+  margin-bottom: 7px;
+}
+
+.sidebar-nav {
+  gap: 3px;
+  overflow-y: hidden;
+  padding-right: 0;
+}
+
+.sidebar-item {
+  min-height: 39px;
+  padding: 8px 11px;
+  gap: 11px;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.sidebar-icone {
+  font-size: 15px;
+}
+
+.sidebar-final {
+  padding-top: 9px;
+  margin-top: 6px;
+}
+
+.sidebar-ajuda {
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.ajuda-icone {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+

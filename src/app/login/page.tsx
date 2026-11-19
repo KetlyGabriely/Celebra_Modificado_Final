@@ -140,6 +140,18 @@ export default function LoginPage() {
             />
           </div>
 
+          <div className="login-esqueceu-container">
+            <button
+              type="button"
+              className="login-esqueceu-senha"
+              onClick={() =>
+                router.push("/esqueci-senha")
+              }
+            >
+              Esqueci minha senha
+            </button>
+          </div>
+
           {/* BOTÃO */}
 
           <button

@@ -483,3 +483,39 @@
   }
 
 }
+
+.login-esqueceu-container {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: -4px;
+  margin-bottom: 6px;
+}
+
+.login-esqueceu-senha {
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #8a8a8a;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-esqueceu-senha:hover {
+  color: #d6aa46;
+}
+
+.login-esqueceu-senha:focus-visible {
+  outline: 1px solid #d6aa46;
+  outline-offset: 4px;
+  border-radius: 2px;
+}

@@ -1,53 +1,102 @@
+
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { listarMeusServicos } from "@/controllers/servicoController";
-import { listarInteressesRecebidos } from "@/controllers/interesseController";
-import { listarOrcamentosProfissional } from "@/controllers/orcamentoController";
-import { listarEventosPublicos } from "@/controllers/eventoController";
+import {
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
-interface ResumoProfissional {
-  servicos: number;
-  interesses: number;
-  oportunidades: number;
-  orcamentos: number;
-}
+import { useRouter } from "next/navigation";
+
+import {
+  listarMeusServicos,
+} from "@/controllers/servicoController";
+
+import {
+  listarInteressesRecebidos,
+} from "@/controllers/interesseController";
+
+import {
+  listarOrcamentosProfissional,
+} from "@/controllers/orcamentoController";
+
+import {
+  listarEventosPublicos,
+} from "@/controllers/eventoController";
 
 export default function ProfissionalPage() {
   const router = useRouter();
-  const [resumo, setResumo] = useState<ResumoProfissional>({
-    servicos: 0,
-    interesses: 0,
-    oportunidades: 0,
-    orcamentos: 0,
-  });
 
-  useEffect(() => {
-    async function carregarResumo() {
-      try {
-      const resultados = await Promise.allSettled([
+  const [servicosAtivos, setServicosAtivos] =
+    useState(0);
+
+  const [totalInteresses, setTotalInteresses] =
+    useState(0);
+
+  const [totalOportunidades, setTotalOportunidades] =
+    useState(0);
+
+  const [totalOrcamentos, setTotalOrcamentos] =
+    useState(0);
+
+  const [carregando, setCarregando] =
+    useState(true);
+
+  const [erro, setErro] = useState("");
+
+  const carregarResumo = useCallback(async () => {
+    try {
+      setCarregando(true);
+      setErro("");
+
+      const [
+        servicos,
+        interesses,
+        orcamentos,
+        eventos,
+      ] = await Promise.all([
         listarMeusServicos(),
         listarInteressesRecebidos(),
-        listarEventosPublicos(),
         listarOrcamentosProfissional(),
+        listarEventosPublicos(),
       ]);
 
-        const [servicos, interesses, oportunidades, orcamentos] = resultados;
+      // Conta somente os serviços ativos.
+      setServicosAtivos(
+        servicos.filter(
+          (servico) => servico.ativo === true
+        ).length
+      );
 
-        if (servicos.status === "fulfilled") setResumo((atual) => ({ ...atual, servicos: servicos.value.filter((servico) => servico.ativo).length }));
-        if (interesses.status === "fulfilled") setResumo((atual) => ({ ...atual, interesses: interesses.value.length }));
-        if (oportunidades.status === "fulfilled") setResumo((atual) => ({ ...atual, oportunidades: oportunidades.value.length }));
-        if (orcamentos.status === "fulfilled") setResumo((atual) => ({ ...atual, orcamentos: orcamentos.value.length }));
-      } catch (error) {
-        console.error("Não foi possível carregar o resumo profissional:", error);
-      }
+      // Total de interesses recebidos.
+      setTotalInteresses(interesses.length);
+
+      // Total de oportunidades disponíveis.
+      setTotalOportunidades(eventos.length);
+
+      // Total de orçamentos.
+      setTotalOrcamentos(orcamentos.length);
+
+    } catch (error) {
+      console.error(
+        "Erro ao carregar resumo profissional:",
+        error
+      );
+
+      setErro(
+        error instanceof Error
+          ? error.message
+          : "Não foi possível atualizar os indicadores."
+      );
+    } finally {
+      setCarregando(false);
     }
-
-    void carregarResumo();
-    window.addEventListener("focus", carregarResumo);
-    return () => window.removeEventListener("focus", carregarResumo);
   }, []);
+
+  useEffect(() => {
+    void carregarResumo();
+  }, [carregarResumo]);
 
   return (
     <div className="prof-home">
@@ -70,9 +119,7 @@ export default function ProfissionalPage() {
         <button
           className="prof-btn-principal"
           onClick={() =>
-            router.push(
-              "/profissional/servicos/novo"
-            )
+            router.push("/profissional/servicos/novo")
           }
         >
           <span>+</span>
@@ -80,9 +127,27 @@ export default function ProfissionalPage() {
         </button>
       </section>
 
+      {erro && (
+        <div className="prof-erro-box">
+          <strong>
+            Não foi possível atualizar os indicadores.
+          </strong>
+
+          <p>{erro}</p>
+
+          <button
+            onClick={() => void carregarResumo()}
+          >
+            Tentar novamente
+          </button>
+        </div>
+      )}
+
       <section className="prof-resumo">
         <ResumoCard
-          numero={String(resumo.servicos)}
+          numero={
+            carregando ? "..." : servicosAtivos
+          }
           titulo="Serviços ativos"
           descricao="Serviços publicados no marketplace"
           icone="◇"
@@ -92,38 +157,38 @@ export default function ProfissionalPage() {
         />
 
         <ResumoCard
-          numero={String(resumo.interesses)}
+          numero={
+            carregando ? "..." : totalInteresses
+          }
           titulo="Interesses"
           descricao="Clientes interessados em seus serviços"
           icone="♡"
           onClick={() =>
-            router.push(
-              "/profissional/interesses"
-            )
+            router.push("/profissional/interesses")
           }
         />
 
         <ResumoCard
-          numero={String(resumo.oportunidades)}
+          numero={
+            carregando ? "..." : totalOportunidades
+          }
           titulo="Oportunidades"
           descricao="Eventos procurando profissionais"
           icone="✦"
           onClick={() =>
-            router.push(
-              "/profissional/eventos"
-            )
+            router.push("/profissional/eventos")
           }
         />
 
         <ResumoCard
-          numero={String(resumo.orcamentos)}
+          numero={
+            carregando ? "..." : totalOrcamentos
+          }
           titulo="Orçamentos"
           descricao="Propostas enviadas aos clientes"
           icone="▤"
           onClick={() =>
-            router.push(
-              "/profissional/orcamentos"
-            )
+            router.push("/profissional/orcamentos")
           }
         />
       </section>
@@ -155,9 +220,7 @@ export default function ProfissionalPage() {
 
           <button
             onClick={() =>
-              router.push(
-                "/profissional/servicos/novo"
-              )
+              router.push("/profissional/servicos/novo")
             }
           >
             Cadastrar serviço →
@@ -175,7 +238,7 @@ function ResumoCard({
   icone,
   onClick,
 }: {
-  numero: string;
+  numero: number | string;
   titulo: string;
   descricao: string;
   icone: string;
