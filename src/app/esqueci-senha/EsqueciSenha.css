@@ -71,7 +71,7 @@
 .recuperacao-sucesso > span {
   color: #b58c38;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
 
   letter-spacing: 2px;
@@ -93,7 +93,7 @@
 
   color: #707070;
 
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.7;
 }
 
@@ -113,7 +113,7 @@
 
   color: #aaa;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -160,7 +160,7 @@
   background: #d6aa46;
   color: #111;
 
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 
   cursor: pointer;
@@ -214,13 +214,13 @@
 
   border-radius: 50%;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .recuperacao-erro p {
   margin: 0;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -235,7 +235,7 @@
   background: transparent;
   color: #666;
 
-  font-size: 10px;
+  font-size: 12px;
 
   cursor: pointer;
 
@@ -279,7 +279,7 @@
 
   color: #707070;
 
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.7;
 }
 
@@ -308,7 +308,7 @@
 
   cursor: pointer;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -323,7 +323,7 @@
 
   text-align: center;
 
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.4px;
 }
 

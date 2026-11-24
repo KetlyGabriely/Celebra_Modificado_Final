@@ -73,7 +73,7 @@ button {
 
   color: #555;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2.5px;
 }
@@ -208,7 +208,7 @@ button {
 
   color: #aaa;
 
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .prof-sidebar-dica p {
@@ -216,7 +216,7 @@ button {
 
   color: #555;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-sidebar-sair {
@@ -271,7 +271,7 @@ button {
 .prof-header-label {
   color: #5e5e5e;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2.4px;
 }
@@ -302,7 +302,7 @@ button {
 .prof-header-usuario div > span {
   color: #666;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .prof-header-avatar {
@@ -352,7 +352,7 @@ button {
 .prof-dashboard-label {
   color: #b58c38;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2.6px;
 }
@@ -395,7 +395,7 @@ button {
   background: #d6aa46;
   color: #111;
 
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 
   cursor: pointer;
@@ -461,7 +461,7 @@ button {
 
   color: #bbb;
 
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .prof-resumo-card p {
@@ -469,7 +469,7 @@ button {
 
   color: #555;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* BLOCO */
@@ -503,7 +503,7 @@ button {
 
   color: #666;
 
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.7;
 }
 
@@ -600,7 +600,7 @@ button {
 
   border-radius: 20px;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-status.ativo {
@@ -625,7 +625,7 @@ button {
 .prof-servico-categoria {
   color: #a27c33;
 
-  font-size: 8px;
+  font-size: 10px;
 
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -646,7 +646,7 @@ button {
 
   color: #666;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -675,7 +675,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* ESTADOS */
@@ -712,7 +712,7 @@ button {
 .prof-servicos-vazio p {
   color: #666;
 
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .prof-servicos-vazio button {
@@ -728,7 +728,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -744,7 +744,7 @@ button {
 }
 
 .prof-erro-box p {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .prof-erro-box button {
@@ -825,7 +825,7 @@ button {
 
   color: #777;
 
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -852,7 +852,7 @@ button {
 
   color: #777;
 
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
 }
 
@@ -899,7 +899,7 @@ button {
 
   color: #c69b3e;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .novo-bloco-header h2 {
@@ -915,7 +915,7 @@ button {
 
   color: #5e5e5e;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .novo-form-grid {
@@ -943,7 +943,7 @@ button {
 
   color: #aaa;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -961,7 +961,7 @@ button {
   color: #ded8cf;
 
   font-family: inherit;
-  font-size: 12px;
+  font-size: 14px;
 
   transition: border-color 0.2s;
 }
@@ -1004,7 +1004,7 @@ button {
 
   color: #505050;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .novo-contador {
@@ -1015,7 +1015,7 @@ button {
 
   color: #4e4e4e;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .novo-input-preco {
@@ -1044,7 +1044,7 @@ button {
 
   color: #8c7138;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .novo-input-preco input {
@@ -1086,13 +1086,13 @@ button {
 
   border-radius: 50%;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .novo-servico-erro p {
   margin: 0;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .novo-servico-acoes {
@@ -1116,7 +1116,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .novo-btn-cancelar:hover {
@@ -1196,7 +1196,7 @@ button {
 
   color: #626262;
 
-  font-size: 9px;
+  font-size: 11px;
 
   text-transform: uppercase;
   letter-spacing: 1.4px;
@@ -1230,7 +1230,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 
   transition: 0.2s;
 }
@@ -1336,7 +1336,7 @@ button {
 .interesse-card-categoria {
   color: #997630;
 
-  font-size: 8px;
+  font-size: 10px;
 
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -1361,7 +1361,7 @@ button {
 
   color: #737373;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.6;
 
   white-space: nowrap;
@@ -1376,7 +1376,7 @@ button {
 
   color: #505050;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .interesse-status {
@@ -1441,7 +1441,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .interesse-card-abrir:hover {
@@ -1504,7 +1504,7 @@ button {
 
   color: #6f6f6f;
 
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
 
   transition: color 0.2s ease;
@@ -1566,7 +1566,7 @@ button {
 
   color: #c89b3e;
 
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 600;
 
   text-transform: uppercase;
@@ -1608,7 +1608,7 @@ button {
 
   color: #999;
 
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.8;
 
   white-space: pre-line;
@@ -1661,7 +1661,7 @@ button {
 
   color: #555;
 
-  font-size: 8px;
+  font-size: 10px;
 
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -1670,7 +1670,7 @@ button {
 .solicitacao-info strong {
   color: #c7c1b8;
 
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -1706,7 +1706,7 @@ button {
 
   color: #666;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -1720,7 +1720,7 @@ button {
 
   color: #969696;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -1738,7 +1738,7 @@ button {
   color: #ddd7ce;
 
   font-family: inherit;
-  font-size: 11px;
+  font-size: 13px;
 
   transition:
     border-color 0.2s ease,
@@ -1812,7 +1812,7 @@ button {
 
   color: #b68d39;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -1852,7 +1852,7 @@ button {
 
   color: #bd7676;
 
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -1875,7 +1875,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 
   transition:
@@ -1952,7 +1952,7 @@ button {
 
   color: #666;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
 }
 
@@ -1971,7 +1971,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 
   transition: 0.2s ease;
 }
@@ -2067,7 +2067,7 @@ button {
 
   color: #5e5e5e;
 
-  font-size: 8px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
@@ -2119,7 +2119,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 
   transition: 0.2s;
 }
@@ -2218,7 +2218,7 @@ button {
 .prof-orcamento-topo > div > span {
   color: #987530;
 
-  font-size: 8px;
+  font-size: 10px;
 
   text-transform: uppercase;
   letter-spacing: 1.4px;
@@ -2237,7 +2237,7 @@ button {
 .prof-orcamento-topo small {
   color: #555;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-orcamento-conteudo > p {
@@ -2249,7 +2249,7 @@ button {
 
   color: #707070;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.6;
 
   white-space: nowrap;
@@ -2275,7 +2275,7 @@ button {
 .prof-orcamento-rodape span {
   color: #505050;
 
-  font-size: 8px;
+  font-size: 12px;
 }
 
 /* STATUS */
@@ -2287,7 +2287,7 @@ button {
 
   border-radius: 20px;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-orcamento-pendente {
@@ -2416,7 +2416,7 @@ button {
 
   color: #666;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
 }
 
@@ -2447,7 +2447,7 @@ button {
 
   color: #555;
 
-  font-size: 7px;
+  font-size: 9px;
 
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -2506,7 +2506,7 @@ button {
 
   color: #bbb;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .prof-eventos-busca input::placeholder {
@@ -2525,7 +2525,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 /* =========================================================
@@ -2577,7 +2577,7 @@ button {
 .prof-evento-card-topo > span:first-child {
   color: #a47e32;
 
-  font-size: 8px;
+  font-size: 10px;
 
   text-transform: uppercase;
   letter-spacing: 1.3px;
@@ -2586,7 +2586,7 @@ button {
 .prof-evento-disponivel {
   color: #73a880;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-evento-card h2 {
@@ -2604,7 +2604,7 @@ button {
 
   color: #686868;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-evento-descricao {
@@ -2616,7 +2616,7 @@ button {
 
   color: #666;
 
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.7;
 
   -webkit-line-clamp: 2;
@@ -2652,7 +2652,7 @@ button {
 
   color: #4e4e4e;
 
-  font-size: 7px;
+  font-size: 9px;
 
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -2663,7 +2663,7 @@ button {
 
   color: #a7a198;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
 
   white-space: nowrap;
@@ -2695,7 +2695,7 @@ button {
 
   color: #4f4f4f;
 
-  font-size: 7px;
+  font-size: 9px;
 
   letter-spacing: 1px;
 }
@@ -2722,7 +2722,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-evento-card-rodape button:hover {
@@ -2762,7 +2762,7 @@ button {
 .prof-eventos-vazio p {
   color: #606060;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-eventos-vazio button {
@@ -2850,7 +2850,7 @@ button {
   color: #a98136;
 
   font-family: Georgia, serif;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-evento-secao-titulo h2 {
@@ -2868,7 +2868,7 @@ button {
 
   color: #555;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-evento-texto,
@@ -2884,7 +2884,7 @@ button {
 .prof-evento-texto {
   color: #777;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.8;
 
   white-space: pre-line;
@@ -2903,7 +2903,7 @@ button {
 
   color: #666;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-evento-detalhes-info {
@@ -2930,7 +2930,7 @@ button {
 .prof-evento-detalhe-info strong {
   color: #aaa49c;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
 }
 
@@ -2943,7 +2943,7 @@ button {
 .prof-evento-oportunidade-card > span {
   color: #555;
 
-  font-size: 7px;
+  font-size: 9px;
 
   letter-spacing: 1.2px;
 }
@@ -2965,7 +2965,7 @@ button {
 
   color: #626262;
 
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.6;
 }
 
@@ -2982,7 +2982,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -3007,7 +3007,7 @@ button {
 .prof-evento-aviso strong {
   color: #aaa49c;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-evento-aviso p {
@@ -3015,7 +3015,7 @@ button {
 
   color: #555;
 
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.6;
 }
 
@@ -3135,7 +3135,7 @@ button {
 .prof-proposta-campo > span {
   color: #777;
 
-  font-size: 8px;
+  font-size: 10px;
 
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -3269,7 +3269,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-proposta-cancelar {
@@ -3327,7 +3327,7 @@ button {
 
   color: #666;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .prof-proposta-resumo {
@@ -3354,7 +3354,7 @@ button {
 
   color: #4f4f4f;
 
-  font-size: 7px;
+  font-size: 11px;
 
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -3363,7 +3363,7 @@ button {
 .prof-proposta-resumo strong {
   color: #aaa49c;
 
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
 }
 
@@ -3389,7 +3389,7 @@ button {
 
   color: #555;
 
-  font-size: 7px;
+  font-size: 9px;
 
   letter-spacing: 1px;
 }
@@ -3454,7 +3454,7 @@ button {
 
   color: #626262;
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
 }
 
@@ -3480,7 +3480,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 9px;
+  font-size: 11px;
 }
 
 /* RESPONSIVO */
@@ -3577,7 +3577,7 @@ button {
 
   color: #555;
 
-  font-size: 7px;
+  font-size: 9px;
 
   letter-spacing: 0.8px;
 }
@@ -3595,7 +3595,7 @@ button {
 .prof-evento-servico-status {
   color: #759b73;
 
-  font-size: 7px;
+  font-size: 9px;
 
   white-space: nowrap;
 }
@@ -3605,7 +3605,7 @@ button {
 
   color: #666;
 
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.7;
 }
 
@@ -3645,7 +3645,7 @@ button {
 
   cursor: pointer;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-evento-servico-rodape button:hover {
@@ -3677,7 +3677,7 @@ button {
 
 .prof-evento-servicos-vazio strong {
   color: #aaa49c;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .prof-evento-servicos-vazio p {
@@ -3685,7 +3685,7 @@ button {
 
   color: #555;
 
-  font-size: 8px;
+  font-size: 10px;
 }
 
 /* RESPONSIVO */
@@ -3748,7 +3748,7 @@ button {
 .prof-proposta-categoria small {
   color: #555;
 
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 0.8px;
 }
 
@@ -3773,13 +3773,13 @@ button {
 
 .prof-proposta-orcamento-total span {
   color: #555;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .prof-proposta-orcamento-total strong {
   color: #777;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -3841,3 +3841,31 @@ button {
   margin-bottom: 0;
   padding: 10px;
 }
+
+
+/* ==========================================
+   AJUSTE DE FONTES — ÁREA DO PROFISSIONAL
+========================================== */
+
+.profissional-main p,
+.profissional-main li,
+.profissional-main label,
+.profissional-main small,
+.profissional-main td,
+.profissional-main th {
+  font-size: max(15px, 1em) !important;
+  line-height: 1.6;
+}
+
+.profissional-main button,
+.profissional-main input,
+.profissional-main select,
+.profissional-main textarea {
+  font-size: max(15px, 1em) !important;
+}
+
+.profissional-main a {
+  font-size: max(15px, 1em) !important;
+}
+
+

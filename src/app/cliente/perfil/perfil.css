@@ -104,7 +104,7 @@
 .perfil-cliente-identidade p {
   margin: 0 0 12px;
   color: #777;
-  font-size: 11px;
+  font-size: 13px;
   overflow-wrap: anywhere;
 }
 
@@ -116,7 +116,7 @@
   border-radius: 20px;
   background: rgba(213, 169, 66, 0.06);
   color: #d6aa46;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
@@ -155,7 +155,7 @@
   flex-direction: column;
   gap: 9px;
   color: #888;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.3px;
 }
@@ -216,7 +216,7 @@
   border-radius: 6px;
   background: rgba(70, 145, 90, 0.06);
   color: #83b58f;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -227,7 +227,7 @@
   border-radius: 6px;
   background: rgba(150, 50, 50, 0.06);
   color: #c17d7d;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -252,7 +252,7 @@
   background: #d6aa46;
   color: #111;
   font-family: inherit;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -360,7 +360,7 @@
 
 .perfil-cliente-alterar-foto {
   color: #d6aa46;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
@@ -388,6 +388,6 @@
   }
 
   .perfil-cliente-alterar-foto {
-    font-size: 9px;
+    font-size: 11px;
   }
 }
